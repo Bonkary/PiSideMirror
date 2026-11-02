@@ -34,6 +34,7 @@ class PySideMirror(CoreWidget):
                 module: QModule = getattr(Modules, moduleName)()
             except AttributeError:
                 LoggingUtils.write(f"Unable to find Module {moduleName}. Skipping.")
+                LoggingUtils.write(f"Failed to find.", module=moduleNames)
                 continue
 
             try:

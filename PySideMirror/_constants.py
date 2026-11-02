@@ -23,8 +23,9 @@ class Dirs:
     Modules = Base / "Modules"
     Temp = Path("/tmp")
     UserConfig = UserHome / "config"
+    Logs = UserHome / ".MirrorLogs"
 
 @dataclass
 class Files:
     Config = Dirs.UserConfig / "mirror.json"
-    Log = Dirs.UserHome / ".mirror.log"
+    MainLog = Dirs.Logs / ".mirror.log"
