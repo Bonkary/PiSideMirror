@@ -33,14 +33,14 @@ class PySideMirror(CoreWidget):
             try:
                 module: QModule = getattr(Modules, moduleName)()
             except AttributeError:
-                LoggingUtils.write(f"Unable to find Module {moduleName}. Skipping.")
-                LoggingUtils.write(f"Failed to find.", module=moduleNames)
+                LoggingUtils.addToLog(f"Unable to find Module {moduleName}. Skipping.")
+                LoggingUtils.addToLog(f"Failed to find.", module=moduleNames)
                 continue
 
             try:
                 moduleSize: tuple[int,int] = getattr(module, "gridSize")
             except AttributeError:
-                LoggingUtils.write(f"Can't map {moduleName} since it's missing the 'gridSize' attribute. Skipping.")
+                LoggingUtils.addToLog(f"Can't map {moduleName} since it's missing the 'gridSize' attribute. Skipping.")
                 continue
             
             data = moduleDataPath.read_text()
@@ -61,7 +61,7 @@ class PySideMirror(CoreWidget):
                 }
                 Files.Config.write_text(json.dumps(data))
                 
-            LoggingUtils.write(f"Imported {moduleName} successfully.")
+            LoggingUtils.addToLog(f"Imported {moduleName} successfully.")
             
         self.setLayout(mainLayout)
         

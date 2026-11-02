@@ -28,4 +28,4 @@ class Dirs:
 @dataclass
 class Files:
     Config = Dirs.UserConfig / "mirror.json"
-    MainLog = Dirs.Logs / ".mirror.log"
+    AppLog = Dirs.Logs / ".mirror.log"

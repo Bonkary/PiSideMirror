@@ -11,7 +11,7 @@ class ScreenUtils:
 
 class LoggingUtils:
     @staticmethod
-    def write(log_message: str, module: _ModuleName | None = None) -> None:
+    def addToLog(log_message: str, module: _ModuleName | None = None) -> None:
         if not module:
             caller = inspect.currentframe().f_back
             callerObject = caller.f_locals.get("self")
