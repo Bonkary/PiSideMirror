@@ -1,6 +1,8 @@
 ## Building a Module for PySideMirror
 If you know PySide6, then it should be pretty easy. All you need to do is create a QModule (basically just a QWidget with some extra functions).
 
+If you don't know PySide6, get to learnin'.
+
 When developing, you should do it from inside the Modules folder. This way you can take advantage of some of the tools that I have provided. Plus it keeps everything simple for the user if you let me handle certain things lol
 
 --------------------
@@ -13,9 +15,7 @@ You can look further into it inside the `PySideMirror` class.
 --------------------
 
 ### Adding a Module
-Make a directory in `Modules` with the name of your Module and move the files in there.  
-
-##### Structure
+Make a directory in `Modules` with the name of your Module and move the files in there.
 ```
 PySideMirror
 └── Modules
@@ -37,7 +37,7 @@ It will create a seperate log for just your Module without you needing to specif
 ### Creating a Module
 ##### module.py
 ```
-from QModuleBase import QModule
+from QModuleCore import QModule
 from ModUtils import LoggingUtils
 
 class Calendar(QModule):
@@ -61,4 +61,19 @@ from module import ModuleName      # Only import your Module!
 
 __all__ = ["ModuleName"]           # Only allow "ModuleName" to be imported by the Mirror.
 ```
+
+##### config.json
+You can add what you need for your module in here. It is also used by PySideMirror's, so you need to keep:
+```
+{
+    "position": {
+        "row": 0,
+        "column": 0
+    },
+    visible: true
+}
+```
+
+Other than that, you can add whatever other configuration options you'd like.
+
 -----------------------

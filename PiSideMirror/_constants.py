@@ -5,7 +5,7 @@ from pathlib import Path
 @dataclass
 class SettingNames:
     Resolution: str = "screenResolution"
-    Rotate: str = "rotate"
+    Portrait: str = "portrait"
 
 @dataclass
 class ConfigOptions:
@@ -13,19 +13,21 @@ class ConfigOptions:
     Settings: str = "settings"
     Defaults: ClassVar[dict] = {
         SettingNames.Resolution: "1080x1920",
-        SettingNames.Rotate: False
+        SettingNames.Portrait: False
     }
 
 @dataclass
 class Dirs:
     Base = Path(__file__).parent
-    UserHome = Path.home()
     Modules = Base / "Modules"
     Temp = Path("/tmp")
-    UserConfig = UserHome / "config"
-    Logs = UserHome / ".MirrorLogs"
+    Logs = Base / "Logs"
 
 @dataclass
 class Files:
-    Config = Dirs.UserConfig / "mirror.json"
-    AppLog = Dirs.Logs / ".mirror.log"
+    Config = Dirs.Base / "config.json"
+    AppLog = Dirs.Logs / "mirror.log"
+    
+Files.Config.touch(exist_ok=True)
+Files.AppLog.touch(exist_ok=True)
+Dirs.Modules.touch(exist_ok=True)

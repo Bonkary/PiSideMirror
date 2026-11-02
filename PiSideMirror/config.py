@@ -10,13 +10,8 @@ if not os.path.exists(Files.Config):
 with open(Files.Config, "r+") as f:
     CONFIG = f.read()
     if not CONFIG:
-        defaultConfig = {
-            ConfigOptions.Settings: ConfigOptions.Defaults,
-            ConfigOptions.Modules: []
-        }
-        CONFIG = defaultConfig
-        
-        f.write(json.dumps(defaultConfig))
+        CONFIG = ConfigOptions.Defaults
+        f.write(json.dumps(CONFIG))
         f.seek(0)
     else:
         CONFIG = json.loads(CONFIG)
@@ -27,5 +22,5 @@ _MODULES = CONFIG[ConfigOptions.Modules]
 @dataclass
 class Settings:
     Resolution: str = _SETTINGS[SettingNames.Resolution]
-    Rotate: bool = _SETTINGS[SettingNames.Rotate]
+    Portrait: bool = _SETTINGS[SettingNames.Portrait]
     Modules: ClassVar[list] = _MODULES
